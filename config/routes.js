@@ -32,9 +32,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
+  '/': {view: 'homepage', locals:{title: 'Hello!', rootClass: 'index'}},
+  'post /send/': 'ChatController.send'
 
   /***************************************************************************
   *                                                                          *

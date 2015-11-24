@@ -10,6 +10,7 @@
  */
 module.exports.globals = {
 
+  appName : '煩雀'
   /****************************************************************************
   *                                                                           *
   * Expose the lodash installed in Sails core as a global variable. If this   *
