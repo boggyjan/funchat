@@ -38,13 +38,14 @@ $(function() {
 
   function showUserIDModal(e) {
     $('.user-id-modal').modal({backdrop: 'static'});
-    e.preventDefault();
+    if (e) e.preventDefault();
   }
 
   function socketSetup() {
     
     io.socket.on('msg', function (msg) {
       $('.chat-text').append('<div class="msg-item">' + msg.user + ' 說：' + msg.content + '</div>');
+      $('.chat-text')[0].scrollTop = $('.chat-text')[0].scrollHeight;
     });
     
   }
