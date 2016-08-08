@@ -3,11 +3,19 @@ $(function() {
   var userid = localStorage.userid;
   var count = 0;
   var history = [];
+  var sound;
+
+  //還沒弄
+  //上鍵的history功能
+  //送出時隨機音效功能
+  //禁止送出空白內容
 
   function init() {
     $('.msg-form').on('submit', function(e) {
-      io.socket.post('/send/', {user: userid, content: $('.msg-content').val()});
-      $('.msg-content').val('');
+      if ($('.msg-content').val()) {
+        io.socket.post('/send/', {user: userid, content: $('.msg-content').val()});
+        $('.msg-content').val('');
+      }
       e.preventDefault();
       return;
     });
@@ -46,6 +54,8 @@ $(function() {
     io.socket.on('msg', function (msg) {
       $('.chat-text').append('<div class="msg-item">' + msg.user + ' 說：' + msg.content + '</div>');
       $('.chat-text')[0].scrollTop = $('.chat-text')[0].scrollHeight;
+      sound = new Audio('/sounds/newmsg.ogg');
+      sound.play();
     });
     
   }
